@@ -3,47 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="style.css" />
-    <title>WeatherApp</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <title>Weatherly</title>
   </head>
   <body>
-    <main>
-      <div class="wrapper">
-        <div class="subwrapper">
-          <div class="input">
-            <input type="text" placeholder="Enter City Name" />
-            <button><i class="ri-search-line"></i></button>
-          </div>
-
-          <div class="temp">
-            <h1 class="weathericon"></h1>
-            <p class="Temperature"></p>
-            <p class="cityname"></p>
-          </div>
-
-          <div class="info">
-            <div class="brezzee">
-              <div class="icon"><i class="ri-windy-line"></i></div>
-              <div>
-                <h2>Breeze</h2>
-                <p class="brez"></p>
-              </div>
-            </div>
-            <div class="Humidity">
-              <div class="icon"><i class="ri-water-percent-line"></i></div>
-              <div>
-                <h2>Humitdity</h2>
-                <p class="value"></p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <nav>
+      <div class="nav-left">
+        <h1>Weatherly</h1>
       </div>
+      <div class="nav-right">
+        <ul>
+          <li>Home</li>
+          <li>About us</li>
+          <li>Contact us</li>
+        </ul>
+      </div>
+    </nav>
+    <main id="home">
+     
+        <video
+          src="https://res.cloudinary.com/de9nzwdrp/video/upload/1893623-uhd_3840_2160_25fps_sbdy9u.mp4"
+          autoplay
+          loop
+          muted
+          
+            class="slide"
+        ></video>
+    
+
+      
+        <video
+            src="https://res.cloudinary.com/de9nzwdrp/video/upload/6190836-hd_1920_1080_30fps_xjhlhl.mp4"
+          autoplay
+          loop
+          muted
+      
+            class="slide"
+        ></video>
+     
+
+     
+        <video
+          src="https://res.cloudinary.com/de9nzwdrp/video/upload/854860-hd_1920_1080_25fps_lhuxhk.mp4"
+          autoplay
+          loop
+          muted
+     
+            class="slide"
+        ></video>
+      
+
+    
+        <video
+          src="https://res.cloudinary.com/de9nzwdrp/video/upload/853829-hd_1920_1080_25fps_zseegw.mp4"
+          autoplay
+          loop
+          muted
+          
+          class="slide"
+        ></video>
+     
+     
     </main>
+     <section class="btn">
+        <button class="leftbtn"><i class="ri-arrow-left-line"></i></button>
+        <button class="rightbtn"><i class="ri-arrow-right-line"></i></button>
+      </section>
     <script src="app.js"></script>
   </body>
 </html>
