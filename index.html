@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>WeatherApp</title>
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <div class="subwrapper">
+          <div class="input">
+            <input type="text" placeholder="Enter City Name" />
+            <button><i class="ri-search-line"></i></button>
+          </div>
+
+          <div class="temp">
+            <h1 class="weathericon"></h1>
+            <p class="Temperature"></p>
+            <p class="cityname"></p>
+          </div>
+
+          <div class="info">
+            <div class="brezzee">
+              <div class="icon"><i class="ri-windy-line"></i></div>
+              <div>
+                <h2>Breeze</h2>
+                <p class="brez"></p>
+              </div>
+            </div>
+            <div class="Humidity">
+              <div class="icon"><i class="ri-water-percent-line"></i></div>
+              <div>
+                <h2>Humitdity</h2>
+                <p class="value"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
