@@ -7,7 +7,7 @@
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
     rel="stylesheet"
-/>
+/>  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Weatherly</title>
   </head>
   <body>
@@ -17,9 +17,10 @@
       </div>
       <div class="nav-right">
         <ul>
-          <li>Home</li>
-          <li>About us</li>
-          <li>Contact us</li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About us</a></li>
+          <li ><a href="#weather">CheckWeather</a></li>
+          <li><a href="#form">Contact us</a></li>
         </ul>
       </div>
     </nav>
@@ -74,7 +75,7 @@
         <button class="rightbtn"><i class="ri-arrow-right-line"></i></button>
       </section>
 
-      <section id="about">
+      <section data-aos="fade-up" id="about">
 
        
           <div class="left">
@@ -83,6 +84,87 @@
           <div class="right">  <img src="https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=800&q=80" alt="Weather App Illustration"></div>
         
       </section>
+
+      <section data-aos="fade-right" id="weather">
+        <h2>Check Your City Temperature</h2>
+        <div class="wrapper">
+          
+          <div class="input">
+            <input type="text" placeholder="Enter City">
+            <button class="search"><i class="ri-search-line"></i></button>
+          </div>
+          <div class="temp">
+            <div class="icon"></div>
+            <h3></h3>
+
+
+          </div>
+          <div class="details">
+            <div class="leftdetails">
+              <div class="lefticon"><i class="ri-water-percent-line"></i></div>
+              <h4>Humidity <br><span class="sp"></span></h4>
+            </div>
+             <div class="rightdetails">
+              <div class="righticon"><i class="ri-windy-fill"></i></div>
+              <h4>Breeze <br><span class="pp"></span> </h4>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+          <section data-aos="fade-left" id="form">
+      <h2 class="container">Submit Your Questions Here</h2>
+      <form class="formparent container">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Write your message..."
+            required
+          ></textarea>
+        </div>
+
+        <button class="frmbtn" type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footerparent container">
+        <p>
+          &copy; 2025 Yashraj Vanzara. All rights reserved. Unauthorized use
+          prohibited.
+        </p>
+      </div>
+    </footer>
     <script src="app.js"></script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
   </body>
 </html>
