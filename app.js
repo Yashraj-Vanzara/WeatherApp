@@ -7,6 +7,31 @@ const icon=document.querySelector(".icon")
 const temp=document.querySelector(".temp h3")
 const leftdetails=document.querySelector(".sp")
 const rightdetails=document.querySelector(".pp")
+const closebtn=document.querySelector('.closebtn')
+const menubtn=document.querySelector('.menubtn')
+const nav=document.querySelector('.nav-right ul')
+const navLinks = document.querySelectorAll(".nav-right ul li a");
+
+
+closebtn.addEventListener('click',function(e){
+ menubtn.classList.remove('active')
+  nav.classList.remove('active')
+   closebtn.classList.remove('active')
+  
+})
+menubtn.addEventListener('click',function(e){
+  menubtn.classList.add('active')
+  nav.classList.add('active')
+   closebtn.classList.add('active')
+})
+
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("active")
+    menubtn.classList.remove("active")
+    closebtn.classList.remove("active")
+  })
+})
 
 
 
