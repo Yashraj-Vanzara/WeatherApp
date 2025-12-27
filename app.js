@@ -1,5 +1,7 @@
 window.addEventListener("load", () => {
   input.value=""
+    searchbarinput.value=""
+
   getLocation();
   getRecentseacrchesFromlocalstorage();
 });
@@ -19,6 +21,24 @@ const menubtn = document.querySelector(".menubtn");
 const nav = document.querySelector(".nav-right ul");
 const navLinks = document.querySelectorAll(".nav-right ul li a");
 const recentsearches = document.querySelector(".recentsearches");
+const searchbarinput=document.querySelector(".Searchbar input")
+
+
+searchbarinput.addEventListener("keydown",function(e){
+  if(e.key==="Enter"){
+    const value=searchbarinput.value
+    if(!value)return
+    console.log(value)
+  
+    localStorage.setItem("CityImagename",value)
+      window.location.href="cityImages.html"
+
+ 
+  
+  }
+  
+})
+
 
 const recentSearches = [];
 
