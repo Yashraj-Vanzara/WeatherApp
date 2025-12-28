@@ -469,7 +469,70 @@ cursor: pointer;
   transform: scale(0.8); 
   
 }
+.h3{
+  text-align: center;
+  padding: 6px 0px;
+  font-size: 28px;
+}
+.accomodationshotel{
+  width: 80%;
+    /* background-color: red; */
+    margin: 0 auto;
+    
+}
+.wrapper1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.Accomodations{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.hotels{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(1,1fr);
+  gap: 10px;
+}
+.hotelcard{
+  border: 1px solid #fff;
+  width: 100%;
+  padding: 20px;
+  border-radius: 22px;
+  font-size: 18px;
+  cursor: pointer;
+}
 
+.Tourist{
+  margin-top: 10px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+}
+.tourist{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(1,1fr);
+  gap: 10px;
+
+}
+.touristcard{
+  border: 1px solid #fff;
+  width: 100%;
+  padding: 20px;
+  border-radius: 22px;
+  font-size: 18px;
+  cursor: pointer;
+}
 /* !media queries */
 @media (max-width:880px){
   .nav-right ul li {
@@ -482,6 +545,7 @@ cursor: pointer;
 .wrapper{
   width: 60%;
 }
+
 }
 
 @media (max-width:800px){
@@ -548,6 +612,18 @@ cursor: pointer;
   gap:6px;
   overflow-x: hidden;
 }
+.hotels{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(1,1fr);
+  gap: 10px;
+}
+.tourist{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(1,1fr);
+  gap: 10px;
+}
 }
 
 @media (max-width:680px){
@@ -579,6 +655,7 @@ cursor: pointer;
 .wrapper{
   width: 75%;
 }
+
 }
 
 @media (max-width:497px){
@@ -619,6 +696,18 @@ cursor: pointer;
  /* justify-items: center; */
   gap:6px;
   overflow-x: hidden;
+}
+.hotels{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  grid-template-rows: repeat(1,1fr);
+  gap: 10px;
+}
+.tourist{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  grid-template-rows: repeat(1,1fr);
+  gap: 10px;
 }
 }
 

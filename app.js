@@ -21,8 +21,10 @@ const menubtn = document.querySelector(".menubtn");
 const nav = document.querySelector(".nav-right ul");
 const navLinks = document.querySelectorAll(".nav-right ul li a");
 const recentsearches = document.querySelector(".recentsearches");
-const searchbarinput=document.querySelector(".Searchbar input")
-;
+const searchbarinput=document.querySelector(".Searchbar input");
+const hotelcontainer=document.querySelector(".hotels")
+const touristcontainer=document.querySelector(".tourist")
+
 
 
 async function getAccomodatons(placeid) {
@@ -45,12 +47,66 @@ places.forEach(place=>{
       const lon = place.properties.lon
 
       if(categories.includes("accommodation.hotel")){
-        hotels.push({name,address,lat,lon})
+        if(hotels.length<4){
+              hotels.push({name,address,lat,lon})
+        }
+    
       }
       else if(categories.includes("tourism.attraction")){
-        touristplaces.push({name,address,lat,lon})
+        if(touristplaces.length<4){
+            touristplaces.push({name,address,lat,lon})
+        }
+        
       }
 })
+
+hotels.forEach(hotel=>{
+  const div=document.createElement("div")
+  const h1=document.createElement("h1")
+  const p =document.createElement("p")
+
+  div.classList.add("hotelcard")
+  h1.textContent=hotel.name
+  p.textContent=hotel.address
+
+  div.appendChild(h1)
+  div.appendChild(p)
+
+  hotelcontainer.appendChild(div)
+    div.addEventListener("click",function(e){
+         const searchQuery = encodeURIComponent(`${hotel.address} ${hotel.lat},${hotel.lon}`);
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+  window.open(mapsUrl, '_blank')
+    
+  })
+
+ 
+
+})
+
+touristplaces.forEach(tour=>{
+  const div=document.createElement("div")
+  const h1=document.createElement("h1")
+  const p =document.createElement("p")
+   div.classList.add("touristcard")
+  h1.textContent=tour.name
+  p.textContent=tour.address
+
+  div.appendChild(h1)
+  div.appendChild(p)
+
+  touristcontainer.appendChild(div)
+
+  div.addEventListener("click",function(e){
+         const searchQuery = encodeURIComponent(`${tour.address} ${tour.lat},${tour.lon}`);
+  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+  window.open(mapsUrl, '_blank')
+    
+  })
+  
+})
+
+
 
 console.log("hotels",hotels)
 console.log("tourist",touristplaces)
@@ -122,6 +178,7 @@ function getRecentseacrchesFromlocalstorage() {
       const city = e.target.textContent; 
       input.value = city; 
       getweather(input);
+      
       storedatainlocalstorage()
     });
     recentsearches.appendChild(span)
