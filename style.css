@@ -463,7 +463,17 @@ h6{
   height: 350px;
   object-fit:cover ;
   transition: all 0.27s ease-in;
+  border-radius: 12px;
 }
+
+.cityimage:nth-child(2n){
+  height: 370px;
+}
+.cityimage:nth-child(3n){
+  height: 400px;
+}
+
+
  .cityimage:hover{
 cursor: pointer;
   transform: scale(0.8); 
@@ -498,7 +508,7 @@ cursor: pointer;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: repeat(1,1fr);
-  gap: 10px;
+  gap: 20px;
 }
 .hotelcard{
   border: 1px solid #fff;
@@ -507,6 +517,12 @@ cursor: pointer;
   border-radius: 22px;
   font-size: 18px;
   cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.hotelcard:hover{
+  background-color: #d2dfe98d;
+    transform: scale(1.1);
 }
 
 .Tourist{
@@ -515,14 +531,14 @@ cursor: pointer;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 
 }
 .tourist{
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: repeat(1,1fr);
-  gap: 10px;
+  gap: 20px;
 
 }
 .touristcard{
@@ -532,6 +548,11 @@ cursor: pointer;
   border-radius: 22px;
   font-size: 18px;
   cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.touristcard:hover{
+  background-color: #d2dfe98d;
+    transform: scale(1.1);
 }
 
 
@@ -539,6 +560,15 @@ cursor: pointer;
   font-size: 22px;
   margin: 20px 0px;
 }
+
+ .Cardcontentpara{
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+  .Cardcontent{
+    font-size: 22px;
+    text-transform: capitalize;
+  }
 /* !media queries */
 @media (max-width:880px){
   .nav-right ul li {
@@ -630,6 +660,14 @@ cursor: pointer;
   grid-template-rows: repeat(1,1fr);
   gap: 10px;
 }
+ .Cardcontentpara{
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+  .Cardcontent{
+    font-size: 20px;
+    text-transform: capitalize;
+  }
 }
 
 @media (max-width:680px){
@@ -728,5 +766,14 @@ cursor: pointer;
   }
   #form{
     width: 100%;
+  }
+  .Cardcontentpara{
+    font-size: 16px;
+  }
+  .Cardcontent{
+    font-size: 18px;
+  }
+  .h33{
+    font-size: 20px;
   }
 }

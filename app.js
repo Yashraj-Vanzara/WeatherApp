@@ -65,7 +65,9 @@ async function getAccomodatons(placeid,cityname) {
       const p = document.createElement("p");
 
       div.classList.add("hotelcard");
+      h1.classList.add("Cardcontent")
       h1.textContent = hotel.name;
+      p.classList.add("Cardcontentpara")
       p.textContent = hotel.address;
       cplaces.textContent="Hotels"
       h33.textContent=`This are Some Accomodations and Tourist places for ${cityname}`
@@ -88,7 +90,9 @@ async function getAccomodatons(placeid,cityname) {
       const h1 = document.createElement("h1");
       const p = document.createElement("p");
       div.classList.add("touristcard");
+       h1.classList.add("Cardcontent")
       h1.textContent = tour.name;
+      p.classList.add("Cardcontentpara")
       p.textContent = tour.address;
       tplaces.textContent="Tourist Places"
 
