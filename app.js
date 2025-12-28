@@ -26,8 +26,9 @@ const hotelcontainer = document.querySelector(".hotels");
 const touristcontainer = document.querySelector(".tourist");
 const tplaces=document.querySelector('.tplaces')
 const cplaces=document.querySelector(".cplaces")
+const h33=document.querySelector(".h33")
 
-async function getAccomodatons(placeid) {
+async function getAccomodatons(placeid,cityname) {
   try {
     const response =
       await fetch(`https://api.geoapify.com/v2/places?categories=accommodation.hotel,tourism.attraction&filter=place:${placeid}&limit=20&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77
@@ -67,6 +68,7 @@ async function getAccomodatons(placeid) {
       h1.textContent = hotel.name;
       p.textContent = hotel.address;
       cplaces.textContent="Hotels"
+      h33.textContent=`This are Some Accomodations and Tourist places for ${cityname}`
 
       div.appendChild(h1);
       div.appendChild(p);
@@ -113,7 +115,7 @@ async function getAccomodatons(placeid) {
   }
 }
 
-async function getCitynamegeocode(city) {
+async function getCitynamegeocode(city,cityname) {
   try {
     const response = await fetch(
       `https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77`
@@ -123,7 +125,7 @@ async function getCitynamegeocode(city) {
     if (data.features && data.features.length > 0) {
       const placeId = data.features[0].properties.place_id;
       console.log("placeid", placeId);
-      getAccomodatons(placeId);
+      getAccomodatons(placeId ,cityname);
       return placeId;
     } else {
       console.error("City not found");
@@ -163,7 +165,7 @@ function getRecentseacrchesFromlocalstorage() {
       const city = e.target.textContent;
       input.value = city;
       getweather(input);
-      getCitynamegeocode(input.value);
+      getCitynamegeocode(input.value,input.value);
 
       storedatainlocalstorage();
     });
@@ -222,7 +224,7 @@ async function getWeatherByLocation(userLat, userLon) {
   rightdetails.textContent = data.wind.speed + "km/h";
   cityname.textContent = data.name;
 
-  getCitynamegeocode(data.name);
+  getCitynamegeocode(data.name,data.name);
 }
 
 closebtn.addEventListener("click", function (e) {
@@ -265,13 +267,13 @@ input.addEventListener("keydown", function (E) {
   if (E.key === "Enter") {
     getweather(input);
     storedatainlocalstorage();
-    getCitynamegeocode(input.value);
+    getCitynamegeocode(input.value,input.value);
   }
 });
 btn.addEventListener("click", function (E) {
   getweather(input);
   storedatainlocalstorage();
-  getCitynamegeocode(input.value);
+  getCitynamegeocode(input.value,input.value);
 });
 
 function updateWeatherIcon(condition) {
