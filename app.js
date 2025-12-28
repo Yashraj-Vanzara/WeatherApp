@@ -22,6 +22,70 @@ const nav = document.querySelector(".nav-right ul");
 const navLinks = document.querySelectorAll(".nav-right ul li a");
 const recentsearches = document.querySelector(".recentsearches");
 const searchbarinput=document.querySelector(".Searchbar input")
+;
+
+
+async function getAccomodatons(placeid) {
+  try {
+
+    const response=await fetch(`https://api.geoapify.com/v2/places?categories=accommodation.hotel,tourism.attraction&filter=place:${placeid}&limit=20&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77
+`)
+const data=await response.json()
+console.log("Data from places",data)
+
+const places=data.features
+const hotels=[]
+const touristplaces=[]
+
+places.forEach(place=>{
+   const name = place.properties.name;
+      const address = place.properties.formatted;
+      const categories = place.properties.categories;
+      const lat = place.properties.lat;
+      const lon = place.properties.lon
+
+      if(categories.includes("accommodation.hotel")){
+        hotels.push({name,address,lat,lon})
+      }
+      else if(categories.includes("tourism.attraction")){
+        touristplaces.push({name,address,lat,lon})
+      }
+})
+
+console.log("hotels",hotels)
+console.log("tourist",touristplaces)
+
+    
+  } catch (error) {
+    console.log("Error")
+    return null;
+    
+  }
+  
+}
+
+
+
+async function getCitynamegeocode(city){
+  try {
+    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77`);
+    const data = await response.json();
+    
+    if(data.features && data.features.length > 0) {
+      const placeId = data.features[0].properties.place_id;
+      console.log("placeid",placeId)
+      getAccomodatons(placeId)
+      return placeId;
+    } else {
+      console.error("City not found");
+      return null;
+    }
+  } catch(error) {
+    console.error("Error fetching geocode:", error);
+    return null;
+  }
+
+}
 
 
 searchbarinput.addEventListener("keydown",function(e){
@@ -156,11 +220,13 @@ input.addEventListener("keydown", function (E) {
   if (E.key === "Enter") {
     getweather(input);
     storedatainlocalstorage();
+    getCitynamegeocode(input.value)
   }
 });
 btn.addEventListener("click", function (E) {
   getweather(input);
   storedatainlocalstorage();
+   getCitynamegeocode(input.value)
 });
 
 function updateWeatherIcon(condition) {
