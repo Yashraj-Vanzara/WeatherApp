@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
-  input.value=""
-    searchbarinput.value=""
+  input.value = "";
+  searchbarinput.value = "";
 
   getLocation();
   getRecentseacrchesFromlocalstorage();
@@ -21,144 +21,130 @@ const menubtn = document.querySelector(".menubtn");
 const nav = document.querySelector(".nav-right ul");
 const navLinks = document.querySelectorAll(".nav-right ul li a");
 const recentsearches = document.querySelector(".recentsearches");
-const searchbarinput=document.querySelector(".Searchbar input");
-const hotelcontainer=document.querySelector(".hotels")
-const touristcontainer=document.querySelector(".tourist")
-
-
+const searchbarinput = document.querySelector(".Searchbar input");
+const hotelcontainer = document.querySelector(".hotels");
+const touristcontainer = document.querySelector(".tourist");
+const tplaces=document.querySelector('.tplaces')
+const cplaces=document.querySelector(".cplaces")
 
 async function getAccomodatons(placeid) {
   try {
+    const response =
+      await fetch(`https://api.geoapify.com/v2/places?categories=accommodation.hotel,tourism.attraction&filter=place:${placeid}&limit=20&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77
+`);
+    const data = await response.json();
+    console.log("Data from places", data);
 
-    const response=await fetch(`https://api.geoapify.com/v2/places?categories=accommodation.hotel,tourism.attraction&filter=place:${placeid}&limit=20&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77
-`)
-const data=await response.json()
-console.log("Data from places",data)
+    const places = data.features;
+    const hotels = [];
+    const touristplaces = [];
 
-const places=data.features
-const hotels=[]
-const touristplaces=[]
-
-places.forEach(place=>{
-   const name = place.properties.name;
+    places.forEach((place) => {
+      const name = place.properties.name;
       const address = place.properties.formatted;
       const categories = place.properties.categories;
       const lat = place.properties.lat;
-      const lon = place.properties.lon
+      const lon = place.properties.lon;
 
-      if(categories.includes("accommodation.hotel")){
-        if(hotels.length<4){
-              hotels.push({name,address,lat,lon})
+      if (categories.includes("accommodation.hotel")) {
+        if (hotels.length < 4) {
+          hotels.push({ name, address, lat, lon });
         }
-    
-      }
-      else if(categories.includes("tourism.attraction")){
-        if(touristplaces.length<4){
-            touristplaces.push({name,address,lat,lon})
+      } else if (categories.includes("tourism.attraction")) {
+        if (touristplaces.length < 4) {
+          touristplaces.push({ name, address, lat, lon });
         }
-        
       }
-})
+    });
+    hotelcontainer.innerHTML = "";
+    touristcontainer.innerHTML = "";
+    hotels.forEach((hotel) => {
+      const div = document.createElement("div");
+      const h1 = document.createElement("h1");
+      const p = document.createElement("p");
 
-hotels.forEach(hotel=>{
-  const div=document.createElement("div")
-  const h1=document.createElement("h1")
-  const p =document.createElement("p")
+      div.classList.add("hotelcard");
+      h1.textContent = hotel.name;
+      p.textContent = hotel.address;
+      cplaces.textContent="Hotels"
 
-  div.classList.add("hotelcard")
-  h1.textContent=hotel.name
-  p.textContent=hotel.address
+      div.appendChild(h1);
+      div.appendChild(p);
 
-  div.appendChild(h1)
-  div.appendChild(p)
+      hotelcontainer.appendChild(div);
+      div.addEventListener("click", function (e) {
+        const searchQuery = encodeURIComponent(
+          `${hotel.address} ${hotel.lat},${hotel.lon}`
+        );
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        window.open(mapsUrl, "_blank");
+      });
+    });
 
-  hotelcontainer.appendChild(div)
-    div.addEventListener("click",function(e){
-         const searchQuery = encodeURIComponent(`${hotel.address} ${hotel.lat},${hotel.lon}`);
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
-  window.open(mapsUrl, '_blank')
-    
-  })
+    touristplaces.forEach((tour) => {
+      const div = document.createElement("div");
+      const h1 = document.createElement("h1");
+      const p = document.createElement("p");
+      div.classList.add("touristcard");
+      h1.textContent = tour.name;
+      p.textContent = tour.address;
+      tplaces.textContent="Tourist Places"
 
- 
+      div.appendChild(h1);
+      div.appendChild(p);
 
-})
+      touristcontainer.appendChild(div);
+      
 
-touristplaces.forEach(tour=>{
-  const div=document.createElement("div")
-  const h1=document.createElement("h1")
-  const p =document.createElement("p")
-   div.classList.add("touristcard")
-  h1.textContent=tour.name
-  p.textContent=tour.address
+      div.addEventListener("click", function (e) {
+        const searchQuery = encodeURIComponent(
+          `${tour.address} ${tour.lat},${tour.lon}`
+        );
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+        window.open(mapsUrl, "_blank");
+      });
+    });
 
-  div.appendChild(h1)
-  div.appendChild(p)
-
-  touristcontainer.appendChild(div)
-
-  div.addEventListener("click",function(e){
-         const searchQuery = encodeURIComponent(`${tour.address} ${tour.lat},${tour.lon}`);
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
-  window.open(mapsUrl, '_blank')
-    
-  })
-  
-})
-
-
-
-console.log("hotels",hotels)
-console.log("tourist",touristplaces)
-
-    
+    console.log("hotels", hotels);
+    console.log("tourist", touristplaces);
   } catch (error) {
-    console.log("Error")
+    console.log("Error");
     return null;
-    
   }
-  
 }
 
-
-
-async function getCitynamegeocode(city){
+async function getCitynamegeocode(city) {
   try {
-    const response = await fetch(`https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77`);
+    const response = await fetch(
+      `https://api.geoapify.com/v1/geocode/search?text=${city}&apiKey=3c87111b37b54aa1bdff9fb64bcb3b77`
+    );
     const data = await response.json();
-    
-    if(data.features && data.features.length > 0) {
+
+    if (data.features && data.features.length > 0) {
       const placeId = data.features[0].properties.place_id;
-      console.log("placeid",placeId)
-      getAccomodatons(placeId)
+      console.log("placeid", placeId);
+      getAccomodatons(placeId);
       return placeId;
     } else {
       console.error("City not found");
       return null;
     }
-  } catch(error) {
+  } catch (error) {
     console.error("Error fetching geocode:", error);
     return null;
   }
-
 }
 
+searchbarinput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    const value = searchbarinput.value;
+    if (!value) return;
+    console.log(value);
 
-searchbarinput.addEventListener("keydown",function(e){
-  if(e.key==="Enter"){
-    const value=searchbarinput.value
-    if(!value)return
-    console.log(value)
-  
-    localStorage.setItem("CityImagename",value)
-      window.location.href="cityImages.html"
-
- 
-  
+    localStorage.setItem("CityImagename", value);
+    window.location.href = "cityImages.html";
   }
-  
-})
-
+});
 
 const recentSearches = [];
 
@@ -172,20 +158,20 @@ function getRecentseacrchesFromlocalstorage() {
   cities.forEach((city) => {
     const span = document.createElement("span");
     span.textContent = city;
-    
 
     span.addEventListener("click", function (e) {
-      const city = e.target.textContent; 
-      input.value = city; 
+      const city = e.target.textContent;
+      input.value = city;
       getweather(input);
-      
-      storedatainlocalstorage()
+      getCitynamegeocode(input.value);
+
+      storedatainlocalstorage();
     });
-    recentsearches.appendChild(span)
+    recentsearches.appendChild(span);
   });
 }
 
- function storedatainlocalstorage() {
+function storedatainlocalstorage() {
   const value = input.value.trim();
 
   if (!value) return;
@@ -199,11 +185,10 @@ function getRecentseacrchesFromlocalstorage() {
   if (recentSearches.length > 5) {
     recentSearches.pop();
   }
-  
-   localStorage.setItem("citydata",JSON.stringify(recentSearches) );
-   recentsearches.innerHTML = ""; 
-  getRecentseacrchesFromlocalstorage()
-    
+
+  localStorage.setItem("citydata", JSON.stringify(recentSearches));
+  recentsearches.innerHTML = "";
+  getRecentseacrchesFromlocalstorage();
 }
 
 let userLat = null;
@@ -227,14 +212,17 @@ async function getWeatherByLocation(userLat, userLon) {
   // https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
   const response = await fetch(apiurl);
-  console.log(response);
+
   const data = await response.json();
+  console.log("from location", data);
   temp.textContent = data.main.temp + "° ";
   console.log(data);
   updateWeatherIcon(data.weather[0].main);
   leftdetails.textContent = data.main.humidity + "%";
   rightdetails.textContent = data.wind.speed + "km/h";
   cityname.textContent = data.name;
+
+  getCitynamegeocode(data.name);
 }
 
 closebtn.addEventListener("click", function (e) {
@@ -277,13 +265,13 @@ input.addEventListener("keydown", function (E) {
   if (E.key === "Enter") {
     getweather(input);
     storedatainlocalstorage();
-    getCitynamegeocode(input.value)
+    getCitynamegeocode(input.value);
   }
 });
 btn.addEventListener("click", function (E) {
   getweather(input);
   storedatainlocalstorage();
-   getCitynamegeocode(input.value)
+  getCitynamegeocode(input.value);
 });
 
 function updateWeatherIcon(condition) {

@@ -533,6 +533,12 @@ cursor: pointer;
   font-size: 18px;
   cursor: pointer;
 }
+
+
+ .cplaces,.tplaces{
+  font-size: 22px;
+  margin: 20px 0px;
+}
 /* !media queries */
 @media (max-width:880px){
   .nav-right ul li {
