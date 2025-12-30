@@ -28,6 +28,20 @@ const tplaces=document.querySelector('.tplaces')
 const cplaces=document.querySelector(".cplaces")
 const h33=document.querySelector(".h33")
 
+
+
+async function getforecast(cityname){
+  const response=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityname},IN&appid=c7b7cca425a13b40a2b9163d75804c38&units=metric
+`)
+    const data=await response.json()
+    console.log('data from forecast ',data)
+    const days=data.list
+    days.forEach(day=>{
+      const Din=new Date(day.dt*1000)
+      console.log(Din)
+    })
+}
+
 async function getAccomodatons(placeid,cityname) {
   try {
     const response =
@@ -170,6 +184,7 @@ function getRecentseacrchesFromlocalstorage() {
       input.value = city;
       getweather(input);
       getCitynamegeocode(input.value,input.value);
+      getforecast(input.value)
 
       storedatainlocalstorage();
     });
@@ -229,6 +244,7 @@ async function getWeatherByLocation(userLat, userLon) {
   cityname.textContent = data.name;
 
   getCitynamegeocode(data.name,data.name);
+  getforecast(data.name)
 }
 
 closebtn.addEventListener("click", function (e) {
@@ -260,11 +276,12 @@ async function getweather(input) {
   const response = await fetch(apiurl);
   const data = await response.json();
   temp.textContent = data.main.temp + "° ";
-  console.log(data);
+  console.log("weather data",data);
   updateWeatherIcon(data.weather[0].main);
   leftdetails.textContent = data.main.humidity + "%";
   rightdetails.textContent = data.wind.speed + "km/h";
   cityname.textContent = data.name;
+  getforecast(city)
 }
 
 input.addEventListener("keydown", function (E) {
@@ -272,6 +289,7 @@ input.addEventListener("keydown", function (E) {
     getweather(input);
     storedatainlocalstorage();
     getCitynamegeocode(input.value,input.value);
+    
   }
 });
 btn.addEventListener("click", function (E) {
