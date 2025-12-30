@@ -30,7 +30,7 @@ const h33=document.querySelector(".h33")
 
 
 
-async function getforecast(cityname){
+async function getforecast(cityname,Day){
   const response=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityname},IN&appid=c7b7cca425a13b40a2b9163d75804c38&units=metric
 `)
     const data=await response.json()
@@ -38,8 +38,11 @@ async function getforecast(cityname){
     const days=data.list
     days.forEach(day=>{
       const Din=new Date(day.dt*1000)
-      console.log(Din)
+      if(Day.toLocaleDateString('en-US', { weekday: 'long' }) === Din.toLocaleDateString('en-US', { weekday: 'long' })){
+        console.log("From bsd",Din,Day)
+      }
     })
+
 }
 
 async function getAccomodatons(placeid,cityname) {
@@ -281,7 +284,7 @@ async function getweather(input) {
   leftdetails.textContent = data.main.humidity + "%";
   rightdetails.textContent = data.wind.speed + "km/h";
   cityname.textContent = data.name;
-  getforecast(city)
+  getforecast(city,new Date(data.dt * 1000))
 }
 
 input.addEventListener("keydown", function (E) {
