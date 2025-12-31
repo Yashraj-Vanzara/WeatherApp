@@ -312,64 +312,137 @@ btn.addEventListener("click", function (E) {
   getCitynamegeocode(input.value,input.value);
 });
 
+// async function updateWeatherIcon(condition) {
+//   if (condition === "Clear") {
+//     icon.innerHTML = '<i class="ri-sun-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1601297183305-6df142704ea2?w=1200)`;
+//   } else if (condition === "Clouds") {
+//     icon.innerHTML = '<i class="ri-cloud-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1200)`;
+//   } else if (condition === "Rain") {
+//     icon.innerHTML = '<i class="ri-rainy-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1200)`;
+//   } else if (condition === "Drizzle") {
+//     icon.innerHTML = '<i class="ri-drizzle-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1556485689-33e55ab56127?w=1200)`;
+//   } else if (condition === "Snow") {
+//     icon.innerHTML = '<i class="ri-snowflake-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=1200)`;
+//   } else if (condition === "Thunderstorm") {
+//     icon.innerHTML = '<i class="ri-flashlight-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1200)`;
+//   } else if (condition === "Mist") {
+//     icon.innerHTML = '<i class="ri-mist-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1487621167305-5d248087c724?w=1200)`;
+//   } else if (condition === "Haze") {
+//     icon.innerHTML = '<i class="ri-haze-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?w=1200)`;
+//   } else if (condition === "Fog") {
+//     icon.innerHTML = '<i class="ri-foggy-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=1200)`;
+//   } else if (condition === "Smoke") {
+//     icon.innerHTML = '<i class="ri-fire-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1200)`;
+//   } else if (condition === "Dust") {
+//     icon.innerHTML = '<i class="ri-windy-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1514632595-4944383f2737?w=1200)`;
+//   } else if (condition === "Sand") {
+//     icon.innerHTML = '<i class="ri-windy-fill"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=1200)`;
+//   } else if (condition === "Ash") {
+//     icon.innerHTML = '<i class="ri-temp-hot-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=1200)`;
+//   } else if (condition === "Squall") {
+//     icon.innerHTML = '<i class="ri-typhoon-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=1200)`;
+//   } else if (condition === "Tornado") {
+//     icon.innerHTML = '<i class="ri-tornado-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=1200)`;
+//   } else {
+//     icon.innerHTML = '<i class="ri-question-line"></i>';
+//     wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1200)`;
+//   }
+  
+//   wrapper.style.backgroundSize = 'cover';
+//   wrapper.style.backgroundPosition = 'center';
+//   wrapper.style.backgroundRepeat = 'no-repeat';
+
+// }
+
+// console.log(slides)
+
 async function updateWeatherIcon(condition) {
   if (condition === "Clear") {
     icon.innerHTML = '<i class="ri-sun-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1601297183305-6df142704ea2?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200)";
   } else if (condition === "Clouds") {
     icon.innerHTML = '<i class="ri-cloud-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=1200)";
   } else if (condition === "Rain") {
     icon.innerHTML = '<i class="ri-rainy-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1501696461415-6bd6660c6742?w=1200)";
   } else if (condition === "Drizzle") {
     icon.innerHTML = '<i class="ri-drizzle-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1556485689-33e55ab56127?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?w=1200)";
   } else if (condition === "Snow") {
     icon.innerHTML = '<i class="ri-snowflake-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?w=1200)";
   } else if (condition === "Thunderstorm") {
     icon.innerHTML = '<i class="ri-flashlight-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1500674425229-f692875b0ab7?w=1200)";
   } else if (condition === "Mist") {
     icon.innerHTML = '<i class="ri-mist-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1487621167305-5d248087c724?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200)";
   } else if (condition === "Haze") {
     icon.innerHTML = '<i class="ri-haze-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200)";
   } else if (condition === "Fog") {
     icon.innerHTML = '<i class="ri-foggy-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?w=1200)";
   } else if (condition === "Smoke") {
     icon.innerHTML = '<i class="ri-fire-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1604537529428-15bcbeecfe4d?w=1200)";
   } else if (condition === "Dust") {
     icon.innerHTML = '<i class="ri-windy-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1514632595-4944383f2737?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1505672678657-cc7037095e60?w=1200)";
   } else if (condition === "Sand") {
     icon.innerHTML = '<i class="ri-windy-fill"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200)";
   } else if (condition === "Ash") {
     icon.innerHTML = '<i class="ri-temp-hot-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=1200)";
   } else if (condition === "Squall") {
     icon.innerHTML = '<i class="ri-typhoon-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200)";
   } else if (condition === "Tornado") {
     icon.innerHTML = '<i class="ri-tornado-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1461511669078-d46bf351cd3e?w=1200)";
   } else {
     icon.innerHTML = '<i class="ri-question-line"></i>';
-    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1200)`;
+    wrapper.style.backgroundImage =
+      "url(https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1200)";
   }
-  
-  wrapper.style.backgroundSize = 'cover';
-  wrapper.style.backgroundPosition = 'center';
-  wrapper.style.backgroundRepeat = 'no-repeat';
 
+  wrapper.style.backgroundSize = "cover";
+  wrapper.style.backgroundPosition = "center";
+  wrapper.style.backgroundRepeat = "no-repeat";
 }
 
-// console.log(slides)
 let counter = 0;
 slides.forEach((slides, index) => {
   slides.style.left = `${index * 100}%`;
