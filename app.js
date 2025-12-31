@@ -315,19 +315,35 @@ btn.addEventListener("click", function (E) {
 
 function updateWeatherIcon(condition) {
   if (condition === "Clear") {
-    icon.innerHTML = '<i class="ri-moon-clear-line"></i>';
+    icon.innerHTML = '<i class="ri-sun-line"></i>';
   } else if (condition === "Clouds") {
     icon.innerHTML = '<i class="ri-cloud-line"></i>';
   } else if (condition === "Rain") {
     icon.innerHTML = '<i class="ri-rainy-line"></i>';
+  } else if (condition === "Drizzle") {
+    icon.innerHTML = '<i class="ri-drizzle-line"></i>';
   } else if (condition === "Snow") {
     icon.innerHTML = '<i class="ri-snowflake-line"></i>';
   } else if (condition === "Thunderstorm") {
     icon.innerHTML = '<i class="ri-flashlight-line"></i>';
-  } else if (condition === "Mist" || condition === "Haze") {
+  } else if (condition === "Mist") {
     icon.innerHTML = '<i class="ri-mist-line"></i>';
-  } else if (condition === "Smoke") {
+  } else if (condition === "Haze") {
+    icon.innerHTML = '<i class="ri-haze-line"></i>';
+  } else if (condition === "Fog") {
     icon.innerHTML = '<i class="ri-foggy-line"></i>';
+  } else if (condition === "Smoke") {
+    icon.innerHTML = '<i class="ri-fire-line"></i>';
+  } else if (condition === "Dust") {
+    icon.innerHTML = '<i class="ri-windy-line"></i>';
+  } else if (condition === "Sand") {
+    icon.innerHTML = '<i class="ri-windy-fill"></i>';
+  } else if (condition === "Ash") {
+    icon.innerHTML = '<i class="ri-temp-hot-line"></i>';
+  } else if (condition === "Squall") {
+    icon.innerHTML = '<i class="ri-typhoon-line"></i>';
+  } else if (condition === "Tornado") {
+    icon.innerHTML = '<i class="ri-tornado-line"></i>';
   } else {
     icon.innerHTML = '<i class="ri-question-line"></i>';
   }
