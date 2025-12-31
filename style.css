@@ -218,6 +218,7 @@ h2{
 .temp{
   margin-top: 20px;
   text-align: center;
+  color: white;
 }
 
 .details{
@@ -225,6 +226,7 @@ h2{
   justify-content: space-between;
   align-items: center;
   gap: 50px;
+  color: white;
 }
 
 .leftdetails{

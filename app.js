@@ -29,33 +29,34 @@ const cplaces=document.querySelector(".cplaces")
 const h33=document.querySelector(".h33")
 const forecastparent=document.querySelector(".forecastparent")
 const forecasttitle=document.querySelector(".forecasttitle")
+ const wrapper = document.querySelector('.wrapper')
 
 
 
-async function getforecast(cityname,Day){
-  const response=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityname},IN&appid=c7b7cca425a13b40a2b9163d75804c38&units=metric
-`)
-    const data=await response.json()
-    console.log('data from forecast ',data)
-    const days=data.list
-     forecastparent.innerHTML = '';
-    days.forEach(day=>{
-      const Din=new Date(day.dt*1000)
-      if(Day.toLocaleDateString('en-US', { weekday: 'long' }) === Din.toLocaleDateString('en-US', { weekday: 'long' })){
-       const card = document.createElement('div');
-      card.classList.add('forecastCard');
-       card.innerHTML = `
-        <h3>${cityname}</h3>
-        <p>${Din.toLocaleDateString('en-US', { weekday: 'long' })}</p>
-        <h3>${day.main.temp}°C</h3>
-        <p>${Din.toLocaleTimeString()}</p>
-      `;
-          forecasttitle.textContent="Weather Forecast"
-       forecastparent.appendChild(card);
-      }
-    })
+// async function getforecast(cityname,Day){
+//   const response=await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityname},IN&appid=c7b7cca425a13b40a2b9163d75804c38&units=metric
+// `)
+//     const data=await response.json()
+//     console.log('data from forecast ',data)
+//     const days=data.list
+//      forecastparent.innerHTML = '';
+//     days.forEach(day=>{
+//       const Din=new Date(day.dt*1000)
+//       if(Day.toLocaleDateString('en-US', { weekday: 'long' }) === Din.toLocaleDateString('en-US', { weekday: 'long' })){
+//        const card = document.createElement('div');
+//       card.classList.add('forecastCard');
+//        card.innerHTML = `
+//         <h3>${cityname}</h3>
+//         <p>${Din.toLocaleDateString('en-US', { weekday: 'long' })}</p>
+//         <h3>${day.main.temp}°C</h3>
+//         <p>${Din.toLocaleTimeString()}</p>
+//       `;
+//           forecasttitle.textContent="Weather Forecast"
+//        forecastparent.appendChild(card);
+//       }
+//     })
 
-}
+// }
 
 async function getAccomodatons(placeid,cityname) {
   try {
@@ -199,8 +200,6 @@ function getRecentseacrchesFromlocalstorage() {
       input.value = city;
       getweather(input);
       getCitynamegeocode(input.value,input.value);
-      getforecast(input.value)
-
       storedatainlocalstorage();
     });
     recentsearches.appendChild(span);
@@ -259,7 +258,7 @@ async function getWeatherByLocation(userLat, userLon) {
   cityname.textContent = data.name;
 
   getCitynamegeocode(data.name,data.name);
-  getforecast(data.name)
+  // getforecast(data.name,new Date(data.dt * 1000))
 }
 
 closebtn.addEventListener("click", function (e) {
@@ -296,7 +295,7 @@ async function getweather(input) {
   leftdetails.textContent = data.main.humidity + "%";
   rightdetails.textContent = data.wind.speed + "km/h";
   cityname.textContent = data.name;
-  getforecast(city,new Date(data.dt * 1000))
+  // getforecast(city,new Date(data.dt * 1000))
 }
 
 input.addEventListener("keydown", function (E) {
@@ -313,40 +312,61 @@ btn.addEventListener("click", function (E) {
   getCitynamegeocode(input.value,input.value);
 });
 
-function updateWeatherIcon(condition) {
+async function updateWeatherIcon(condition) {
   if (condition === "Clear") {
     icon.innerHTML = '<i class="ri-sun-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1601297183305-6df142704ea2?w=1200)`;
   } else if (condition === "Clouds") {
     icon.innerHTML = '<i class="ri-cloud-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1200)`;
   } else if (condition === "Rain") {
     icon.innerHTML = '<i class="ri-rainy-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=1200)`;
   } else if (condition === "Drizzle") {
     icon.innerHTML = '<i class="ri-drizzle-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1556485689-33e55ab56127?w=1200)`;
   } else if (condition === "Snow") {
     icon.innerHTML = '<i class="ri-snowflake-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=1200)`;
   } else if (condition === "Thunderstorm") {
     icon.innerHTML = '<i class="ri-flashlight-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?w=1200)`;
   } else if (condition === "Mist") {
     icon.innerHTML = '<i class="ri-mist-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1487621167305-5d248087c724?w=1200)`;
   } else if (condition === "Haze") {
     icon.innerHTML = '<i class="ri-haze-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?w=1200)`;
   } else if (condition === "Fog") {
     icon.innerHTML = '<i class="ri-foggy-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1485236715568-ddc5ee6ca227?w=1200)`;
   } else if (condition === "Smoke") {
     icon.innerHTML = '<i class="ri-fire-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1200)`;
   } else if (condition === "Dust") {
     icon.innerHTML = '<i class="ri-windy-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1514632595-4944383f2737?w=1200)`;
   } else if (condition === "Sand") {
     icon.innerHTML = '<i class="ri-windy-fill"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=1200)`;
   } else if (condition === "Ash") {
     icon.innerHTML = '<i class="ri-temp-hot-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=1200)`;
   } else if (condition === "Squall") {
     icon.innerHTML = '<i class="ri-typhoon-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1527482797697-8795b05a13fe?w=1200)`;
   } else if (condition === "Tornado") {
     icon.innerHTML = '<i class="ri-tornado-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=1200)`;
   } else {
     icon.innerHTML = '<i class="ri-question-line"></i>';
+    wrapper.style.backgroundImage = `url(https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=1200)`;
   }
+  
+  wrapper.style.backgroundSize = 'cover';
+  wrapper.style.backgroundPosition = 'center';
+  wrapper.style.backgroundRepeat = 'no-repeat';
+
 }
 
 // console.log(slides)
