@@ -27,6 +27,8 @@ const touristcontainer = document.querySelector(".tourist");
 const tplaces=document.querySelector('.tplaces')
 const cplaces=document.querySelector(".cplaces")
 const h33=document.querySelector(".h33")
+const forecastparent=document.querySelector(".forecastparent")
+const forecasttitle=document.querySelector(".forecasttitle")
 
 
 
@@ -36,10 +38,20 @@ async function getforecast(cityname,Day){
     const data=await response.json()
     console.log('data from forecast ',data)
     const days=data.list
+     forecastparent.innerHTML = '';
     days.forEach(day=>{
       const Din=new Date(day.dt*1000)
       if(Day.toLocaleDateString('en-US', { weekday: 'long' }) === Din.toLocaleDateString('en-US', { weekday: 'long' })){
-        console.log("From bsd",Din,Day)
+       const card = document.createElement('div');
+      card.classList.add('forecastCard');
+       card.innerHTML = `
+        <h3>${cityname}</h3>
+        <p>${Din.toLocaleDateString('en-US', { weekday: 'long' })}</p>
+        <h3>${day.main.temp}°C</h3>
+        <p>${Din.toLocaleTimeString()}</p>
+      `;
+          forecasttitle.textContent="Weather Forecast"
+       forecastparent.appendChild(card);
       }
     })
 
