@@ -30,6 +30,9 @@ const h33=document.querySelector(".h33")
 const forecastparent=document.querySelector(".forecastparent")
 const forecasttitle=document.querySelector(".forecasttitle")
  const wrapper = document.querySelector('.wrapper')
+ const year=document.querySelector("#year")
+
+ year.textContent=new Date().getFullYear()
 
 
 
